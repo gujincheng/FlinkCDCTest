@@ -1,3 +1,4 @@
+/*
 package com.digiwin.flink.cdc2kafka;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
@@ -15,13 +16,16 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 
+*/
 /**
  * 主要功能：
  * 测试通过Flink调用Phoenix JDBC来创建Schema
  * 由于公司的Phoenix是CDH版本，期间jar包冲突过，整了很久
  * 具体可以参考
  * https://gujincheng.github.io/2022/03/01/Hbase%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/
- */
+ *//*
+
+@Deprecated
 public class FlinkPhoenixTest {
     public static final String PHOENIX_DRIVER = "org.apache.phoenix.jdbc.PhoenixDriver";
     public static void main(String[] args) throws Exception {
@@ -96,4 +100,4 @@ public class FlinkPhoenixTest {
             }
         }
     }
-}
+}*/

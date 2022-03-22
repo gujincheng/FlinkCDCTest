@@ -1,3 +1,4 @@
+/*
 package com.digiwin.flink.cdc2kafka;
 
 import org.apache.flink.api.common.typeinfo.TypeHint;
@@ -28,3 +29,4 @@ public class MyKafkaDeserializationSchema implements KafkaDeserializationSchema<
         //return null; //会报错
     }
 }
+*/

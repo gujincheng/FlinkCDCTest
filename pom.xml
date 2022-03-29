@@ -20,7 +20,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <!--scala版本，用于flink框架内部通信，它自己用        -->
         <scala.binary.version>2.12</scala.binary.version>
-        <cdc.version>2.1.1</cdc.version>
+        <cdc.version>2.2.0</cdc.version>
         <slf4j.version>1.7.30</slf4j.version>
         <hadoop-common.version>3.2.2</hadoop-common.version>
     </properties>
@@ -33,21 +33,28 @@
             <version>${cdc.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.ververica</groupId>
+            <artifactId>flink-connector-sqlserver-cdc</artifactId>
+            <version>${cdc.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-java</artifactId>
             <version>${flink.version}</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-clients_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
+            &lt;!&ndash;<scope>provided</scope>&ndash;&gt;
         </dependency>
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-sql-client_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
-        </dependency>
+            &lt;!&ndash;<scope>provided</scope>&ndash;&gt;
+        </dependency>-->
 
         <dependency>
             <groupId>org.apache.flink</groupId>
@@ -65,11 +72,11 @@
             <version>${flink.version}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-connector-kafka_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
-        </dependency>
+        </dependency>-->
         <!--<dependency>
             <groupId>org.apache.phoenix</groupId>
             <artifactId>phoenix-client</artifactId>

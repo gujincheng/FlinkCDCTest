@@ -31,6 +31,7 @@ public class Mysql2Kakfa {
     private static String tableName;
     private static String userName;
     private static String password;
+    private static String mode;
 
     private static boolean isTest = false;
 
@@ -64,6 +65,8 @@ public class Mysql2Kakfa {
                 userName = argsLeft.get(i + 1);
             } else if ("-password".equals(argsLeft.get(i))) {
                 password = argsLeft.get(i + 1);
+            } else if ("-mode".equals(argsLeft.get(i))) {
+                mode = argsLeft.get(i + 1);
             }
         }
 
@@ -73,15 +76,15 @@ public class Mysql2Kakfa {
     }
 
     public static void main(String[] args) throws Exception {
-        //parseArgs(args);
+        parseArgs(args);
         hostName = "golden-01";
         yourPort = 3306;
         //dbName = "[a-zA-Z\\d]+_test";
         //tableName = "[a-zA-Z\\d]+_test.gjc_test_binlog_[0-9][0-9]";
-        dbName = "test";
+        /*dbName = "test";
         tableName = "test.gjc_test_binlog";
         userName = "root";
-        password = "123456";
+        password = "123456";*/
         System.out.println("hostName:" + hostName
                 + ",port:" + yourPort
                 + ",dbName:" + dbName
@@ -99,8 +102,8 @@ public class Mysql2Kakfa {
 
         Properties extralPro = new Properties();
         //extralPro.setProperty("AllowPublicKeyRetrieval", "true");
-        extralPro.setProperty("scan.incremental.snapshot.enabled","false");
-
+        //extralPro.setProperty("scan.incremental.snapshot.enabled","false");
+        extralPro.setProperty("snapshot.mode",mode);
         //env.setParallelism(1);
         MySqlSource<String> mySqlSource = MySqlSource.<String>builder()
                 .hostname(hostName)
@@ -110,9 +113,11 @@ public class Mysql2Kakfa {
                 .username(userName)
                 .password(password)
 
-                //.serverId("500")
-                //.startupOptions(StartupOptions.initial())
-                .debeziumProperties(extralPro)  //允许表不使用主键
+                //.includeSchemaChanges(true)
+
+
+                //.startupOptions(StartupOptions.latest())
+                .debeziumProperties(extralPro)
                 .deserializer(new JsonDebeziumDeserializationSchema()) // converts SourceRecord to JSON String
                 .build();
 

@@ -76,15 +76,15 @@ public class Mysql2Kakfa {
     }
 
     public static void main(String[] args) throws Exception {
-        parseArgs(args);
-        hostName = "golden-01";
+        //parseArgs(args);
+        hostName = "150.158.190.192";
         yourPort = 3306;
         //dbName = "[a-zA-Z\\d]+_test";
         //tableName = "[a-zA-Z\\d]+_test.gjc_test_binlog_[0-9][0-9]";
-        /*dbName = "test";
+        dbName = "test";
         tableName = "test.gjc_test_binlog";
         userName = "root";
-        password = "123456";*/
+        password = "Gjc123!@#";
         System.out.println("hostName:" + hostName
                 + ",port:" + yourPort
                 + ",dbName:" + dbName
@@ -103,7 +103,7 @@ public class Mysql2Kakfa {
         Properties extralPro = new Properties();
         //extralPro.setProperty("AllowPublicKeyRetrieval", "true");
         //extralPro.setProperty("scan.incremental.snapshot.enabled","false");
-        extralPro.setProperty("snapshot.mode",mode);
+        //extralPro.setProperty("snapshot.mode",mode);
         //env.setParallelism(1);
         MySqlSource<String> mySqlSource = MySqlSource.<String>builder()
                 .hostname(hostName)
@@ -117,7 +117,7 @@ public class Mysql2Kakfa {
 
 
                 //.startupOptions(StartupOptions.latest())
-                .debeziumProperties(extralPro)
+                //.debeziumProperties(extralPro)
                 .deserializer(new JsonDebeziumDeserializationSchema()) // converts SourceRecord to JSON String
                 .build();
 

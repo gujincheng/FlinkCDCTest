@@ -23,6 +23,7 @@
         <cdc.version>2.2.0</cdc.version>
         <slf4j.version>1.7.30</slf4j.version>
         <hadoop-common.version>3.2.2</hadoop-common.version>
+        <hive.version>2.3.9</hive.version>
     </properties>
     <dependencies>
 
@@ -43,17 +44,27 @@
             <version>${flink.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-filesystem_2.12</artifactId>
+            <version>1.11.6</version>
+        </dependency>
+
         <!--<dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-clients_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
-            &lt;!&ndash;<scope>provided</scope>&ndash;&gt;
         </dependency>
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-sql-client_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
-            &lt;!&ndash;<scope>provided</scope>&ndash;&gt;
+        </dependency>-->
+
+        <!--<dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-exec</artifactId>
+            <version>${hive.version}</version>
         </dependency>-->
 
         <dependency>

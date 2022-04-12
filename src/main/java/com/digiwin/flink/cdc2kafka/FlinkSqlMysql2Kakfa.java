@@ -42,12 +42,12 @@ public class FlinkSqlMysql2Kakfa {
         );
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         //配置ck的状态后端
-        env.setStateBackend(new HashMapStateBackend());
+        //env.setStateBackend(new HashMapStateBackend());
         //设置系统异常退出或人为 Cancel 掉，不删除checkpoint数据
-        env.getCheckpointConfig().setExternalizedCheckpointCleanup(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
+        //env.getCheckpointConfig().setExternalizedCheckpointCleanup(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
         //设置checkpoint存储目录
-        env.getCheckpointConfig().setCheckpointStorage("hdfs://golden-02:9000/flink/checkpoint/cdc/gjc_test_Mysql2Kakfa");
-        env.enableCheckpointing(3000);
+        //env.getCheckpointConfig().setCheckpointStorage("hdfs://golden-02:9000/flink/checkpoint/cdc/gjc_test_Mysql2Kakfa");
+        //env.enableCheckpointing(3000);
         EnvironmentSettings settings = EnvironmentSettings.newInstance().useBlinkPlanner().inStreamingMode().build();
         StreamTableEnvironment tenv = StreamTableEnvironment.create(env, settings);
         tenv.executeSql(
@@ -62,6 +62,8 @@ public class FlinkSqlMysql2Kakfa {
                         " 'port' = '3306', " +
                         " 'username' = 'root', " +
                         " 'password' = 'Gjc123!@#', " +
+                        " 'debezium.snapshot.mode'='initial'," +
+                        " 'server-time-zone'= 'Asia/Shanghai'," +
                         " 'database-name' = 'test', " +
                         " 'table-name' = 'gjc_test_binlog' " +
                         //" 'scan.incremental.snapshot.enabled'='false' " +
